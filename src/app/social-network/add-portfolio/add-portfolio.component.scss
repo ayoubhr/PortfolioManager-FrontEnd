@@ -1,0 +1,32 @@
+#head {
+    display: flex;
+    & div:nth-child(2) {
+        margin-left: auto;
+        & button {
+            background-color: rgb(3, 3, 238);
+            color: white;
+            border-radius: 5px;
+        }
+    }
+}
+
+#balance {
+    width: 150px;
+    & p {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        font-weight: bold;
+        font-size: 14px;
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+    }
+}
+
+#mod {
+    width: 30%;
+    margin-left: 35%;
+}
+
+#mod:nth-child(1) {
+    border: 1px solid black;
+}

@@ -1,0 +1,5 @@
+<button id="tx{{i}}" (click)="addTx()">Add tx</button>
+<form id="form{{i}}" hidden>
+    <input name="quantity" #quantityModel="ngModel" [(ngModel)]="quantity" placeholder="Quantity" id="quantity" type="number">
+    <button id="accept" (click)="confirm(asset)">Confirm</button>
+</form>

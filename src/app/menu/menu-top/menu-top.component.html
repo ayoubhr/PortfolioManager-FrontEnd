@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark mb-4">
+    <div class="container-fluid">
+        <a class="navbar-brand" id="title" (click)="route('title')">{{ title }}</a>
+        <ul class="navbar-nav me-auto">
+            <div *ngIf="logged === true" style="display: flex;">
+                <li class="nav-item"><a class="nav-link" id="main" (click)="route('main')">Main</a></li>
+                <li class="nav-item"><a class="nav-link" id="portfolios" (click)="route('portfolios')">Portfolios</a></li>
+                <li class="nav-item"><a class="nav-link" id="addPortfolio" (click)="route('addPortfolio')">Manage Portfolios</a></li>
+                <li class="nav-item"><a class="nav-link" id="mybuddies" (click)="route('mybuddies')">My buddies</a></li>
+            </div>
+            <div *ngIf="logged === false" style="display: flex;">
+                <li class="nav-item"><a class="nav-link" [routerLink]="['auth/register']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">Register</a></li>
+                <li class="nav-item"><a class="nav-link" [routerLink]="['auth/login']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">Login</a></li>
+            </div>
+            <div *ngIf="logged === true">
+                <li class="nav-item"><a class="nav-link" style="cursor: pointer" (click)="kill()">Logout</a></li>
+            </div>
+        </ul>
+    </div>
+</nav>

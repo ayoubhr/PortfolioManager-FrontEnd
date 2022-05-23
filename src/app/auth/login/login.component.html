@@ -1,0 +1,39 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <img src="./../../../assets/login.png" id="icon" alt="User Icon" />
+        </div>
+
+        <!-- Login Form -->
+        <form #loginForm="ngForm" (ngSubmit)="loginUser(user)" novalidate>
+            <div class="mb-3">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control fadeIn second" id="email" name="email" #emailModel="ngModel" [(ngModel)]="user.email" placeholder="Email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [ngClass]="validClasses(emailModel, 'is-valid', 'is-invalid')"
+                />
+                <div class="invalid-feedback" *ngIf="emailModel.errors?.['required']">
+                    Your email is required to be able to login.
+                </div>
+
+                <div class="invalid-feedback" *ngIf="emailModel.errors?.['pattern']">
+                    A correct Email format is required to be able to login.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control fadeIn third" id="password" name="password" #passwordModel="ngModel" [(ngModel)]="user.password" placeholder="Password" required [ngClass]="validClasses(passwordModel, 'is-valid', 'is-invalid')" />
+                <div class="invalid-feedback" *ngIf="passwordModel.errors?.['required']">
+                    Your password is required to be able to login.
+                </div>
+            </div>
+            <input type="submit" class="fadeIn fourth" value="Log In" [disabled]="loginForm.invalid">
+        </form>
+
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+            <a class="underlineHover" href="#">Forgot Password?</a>
+            <br>
+            <a class="underlineHover" (click)="register()">Sign Up <i class="bi bi-box-arrow-right"></i></a>
+        </div>
+    </div>
+</div>

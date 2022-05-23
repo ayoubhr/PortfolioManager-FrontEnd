@@ -1,0 +1,23 @@
+<div hidden   #myModal class="container">
+    <div class="content">
+      <input class="form-control mb-2"
+      id="input"
+      type="text"
+      name="searchByDesc"
+      [(ngModel)]="asset"
+      placeholder="Search"
+      aria-label="Search">
+      <div *ngFor="let a of assets">
+        <table *ngIf="a.id === asset || a.symbol === asset">
+          <tbody>
+            <tr (click)="close(a)">
+              <td><img src="{{a.image.thumb}}" alt=""></td>
+              <td>{{ a.symbol }}</td>
+              <td>{{ a.id }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button (click)="closeModal()">Close</button>
+    </div>
+</div>

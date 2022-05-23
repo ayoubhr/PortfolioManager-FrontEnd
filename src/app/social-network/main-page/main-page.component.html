@@ -1,0 +1,73 @@
+<div id="body" *ngIf="main">
+    <div class="page-content page-container" id="page-content">
+        <div class="padding">
+            <div class="row container d-flex justify-content-center">
+                <div class="col-md-4">
+                    <div class="box box-widget widget-user">
+                        <div class="widget-user-header bg-aqua-active">
+                            <h3 class="widget-user-username">John Doe</h3>
+                            <h5 class="widget-user-desc">Software Engineer &amp; Project Lead</h5>
+                        </div>
+                        <div class="widget-user-image"> <img class="img-circle" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="User Avatar"> </div>
+                        <div class="box-footer">
+                            <div class="row">
+                                <div class="col-sm-4 border-right">
+                                    <div class="description-block">
+                                        <h5 class="description-header">3,200</h5> <span class="description-text">FRIENDS</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 border-right">
+                                    <div class="description-block">
+                                        <h5 class="description-header">13,000</h5> <span class="description-text">FOLLOWERS</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="description-block">
+                                        <h5 class="description-header">35</h5> <span class="description-text">PORTFOLIOS</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div >
+        <table class="table" style="border: 1px black solid; width: 60%; margin-left: 20%;">
+            <thead>
+                <tr style="background-color: darkblue; color: white;">
+                    <th style="border: 1px solid black" scope="col">#</th>
+                    <th style="border: 1px solid black" scope="col">Image</th>
+                    <th style="border: 1px solid black" scope="col">Symbol</th>
+                    <th style="border: 1px solid black" scope="col">Name</th>
+                    <th style="border: 1px solid black" scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let a of assets; let i = index">
+                    <th style="width: 10%;" scope="row">{{i+1}}</th>
+                    <td style="margin-right: 20px; width: 22.5%"><img src="{{a.image.thumb}}" alt=""></td>
+                    <td style="width: 22.5%;">{{a.symbol}}</td>
+                    <td style="width: 22.5%;">{{a.id}}</td>
+                    <td style="width: 22.5%;">{{a.market_data.current_price.usd | currency :'USD':'symbol':'1.0-2'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div *ngIf="portfolios">
+    <app-mystories></app-mystories>
+    <p style="padding-top: 30px;"></p>
+</div>
+
+<div *ngIf="addPortfolio">
+    <app-add-portfolio></app-add-portfolio>
+    <p style="padding-top: 5px;"></p>
+</div>
+
+<div *ngIf="mybuddies">
+    <p style="padding-top: 5px;"></p>
+</div>

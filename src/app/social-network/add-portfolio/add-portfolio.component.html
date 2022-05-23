@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <div id="head">
+        <div id="box">
+            <h3>
+                <a href="#collapseUno" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseUno">My Portfolios <i class="bi bi-chevron-down"></i></a>
+            </h3>
+        
+            <div id="posts" aria-labelledby="cartaUno" class="collapse" data-parent="#box" id="collapseUno">
+                <p>List of portfolios</p>
+            </div>
+        </div>
+        <div>
+            <button (click)="openModal()">add new coin</button>
+        </div>
+    </div>
+
+    <div id="balance" class="card-header">
+        <p>Total Balance: {{ totalBalance | currency :'USD':'symbol':'1.0-2' }}</p>
+    </div>
+    <div id="mod">
+        <app-modal #modal (emitAsset)="handleEvent($event)"></app-modal>
+    </div>
+    <table *ngIf="bool">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Coin</th>
+                <th>Holdings</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let asset of portfolio!.composition; let i = index;">
+                {{launch(asset)}}
+                <td style="margin-right: 20px; width: 22.5%"><img src="{{asset.assetImage}}" alt=""></td>
+                <td>{{ asset.assetSymbol }}</td>
+                <td>{{ asset.quantity }} ({{asset.assetPercentage}}%)</td>
+                <td>{{ asset.assetPrice | currency :'USD':'symbol':'1.0-2' }}</td>
+                <td>
+                    <button (click)="deleteAsset(asset)">Delete</button>
+                </td>
+                <td style="margin-right: 20px;">
+                    <app-transaction [i]="i" [symbol]="asset.assetSymbol" [author]="portfolio.author"></app-transaction>
+                </td>
+            </tr>
+    </table>
+</div>

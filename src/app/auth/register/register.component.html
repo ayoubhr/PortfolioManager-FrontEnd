@@ -1,0 +1,66 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <legend>Create an account</legend>
+        </div>
+        <!-- Login Form -->
+        <form #userForm="ngForm" (ngSubmit)="registerUser(newUser)" novalidate>
+            <div class="mb-3">
+                <label for="name">Name:</label>
+                <br>
+                <input type="text" class="form-control fadeIn second" id="name" name="name" #nameModel="ngModel" [(ngModel)]="newUser.username" placeholder="Name" pattern="[a-zA-Z\s]*" required [ngClass]="validClasses(nameModel, 'is-valid', 'is-invalid')" />
+                <div class="invalid-feedback" *ngIf="nameModel.errors?.['required']">
+                    Your name is required and can only contain letters and spaces.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="name">Lastname:</label>
+                <input type="text" class="form-control fadeIn third" id="lastname" name="lastname" #lastnameModel="ngModel" [(ngModel)]="newUser.lastname" placeholder="Lastname" pattern="[a-zA-Z\s]*" required [ngClass]="validClasses(lastnameModel, 'is-valid', 'is-invalid')"
+                />
+                <div class="invalid-feedback" *ngIf="lastnameModel.errors?.['required']">
+                    Your lastname is required and can only contain letters and spaces.
+                </div>
+            </div>
+
+            <div class="mb-3" ngModelGroup="match" #matchModel="ngModelGroup" checkMatch>
+                <label for="email">Email:</label>
+                <input type="email" class="form-control fadeIn fourth" id="email" name="email" #emailModel="ngModel" [(ngModel)]="newUser.email" placeholder="Email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [ngClass]="validEmails(emailModel, 'is-valid', 'is-invalid')"
+                />
+                <div class="invalid-feedback" *ngIf="emailModel.errors?.['required'] || emailModel.errors?.['pattern']">
+                    A correct Email is required.
+                </div>
+                <pre></pre>
+
+                <label for="email2">Repeat Email:</label>
+                <input type="email" class="form-control fadeIn fifth" id="email2" name="email2" #emailDosModel="ngModel" [(ngModel)]="emailDos" placeholder="Email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [ngClass]="validEmails(emailDosModel, 'is-valid', 'is-invalid')"
+                />
+                <div class="invalid-feedback" *ngIf="emailDosModel.errors?.['required'] || emailDosModel.errors?.['pattern']">
+                    Both emails should match.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control fadeIn sixth" id="password" name="password" #passwordModel="ngModel" [(ngModel)]="newUser.password" placeholder="Password" required minlength="4" [ngClass]="validClasses(passwordModel, 'is-valid', 'is-invalid')"
+                />
+                <div class="invalid-feedback" *ngIf="passwordModel.errors?.['required']">
+                    Password is required.
+                </div>
+
+                <div class="invalid-feedback" *ngIf="passwordModel.errors?.['minlength']">
+                    Password is required to have atleast 4 characters.
+                </div>
+            </div>
+            <p class="text-danger" id="errorInfo"></p>
+
+            <input type="submit" class="fadeIn seventh" value="Create account" [disabled]="userForm.invalid">
+        </form>
+
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+            <a class="underlineHover" href="#"><i class="bi bi-patch-question"></i> FAQ</a>
+        </div>
+    </div>
+</div>

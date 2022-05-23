@@ -1,0 +1,85 @@
+<div class="row" id="feed">
+    <div class="col-md-6 col-xs-12 col-md-offset-3">
+        <div class="panel">
+            <div class="panel-heading" style="margin-top: 50px;">
+                <h3 class="panel-title">Facegular Feed</h3>
+            </div>
+            <div class="panel-body">
+                <!--div class="form-group">
+                    <textarea id="textarea" [(ngModel)]="comment" class="form-control" placeholder="Enter your story here..." rows="3"></textarea>
+                </div>
+                <a (click)="submitStory()" class="btn btn-info btn-sm pull-right waves-effect waves-light" style="background-color: #158fcc; color: white; margin-top: 5px;">Publish</a>
+                <div class="clearfix"></div>
+                <hr class="margin-bottom-10"-->
+                <!-- DE AQUI A ABAJO ES LO QUE INTERESA -->
+                <ul class="list-group list-group-dividered list-group-full">
+                    <li class="list-group-item" *ngFor="let p of publications; let i = index">
+                        <div *ngFor="let u of users;let j = index">
+                            <div *ngIf="p.author === u.id">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a class="avatar avatar-online" href="javascript:void(0)">
+                                            <img src="https://bootdey.com/img/Content/avatar/avatar{{j+1}}.png" alt="...">
+                                            <i></i>
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <div id="show">
+                                            <small class="text-muted pull-right">{{p.date | date}}</small>
+
+                                            <div *ngIf="objects[i]?.reactions[0]?.name === awesome">
+                                                <a><i class="bi bi-emoji-sunglasses red icon-active"></i></a>
+                                            </div>
+                                            <div *ngIf="objects[i]?.reactions[0]?.name === like">
+                                                <a><i class="bi bi-hand-thumbs-up red icon-active"></i></a>
+                                            </div>
+                                            <div *ngIf="objects[i]?.reactions[0]?.name === dislike">
+                                                <a><i class="bi bi-hand-thumbs-down red icon-active"></i></a>
+                                            </div>
+                                        </div>
+                                        <!--a id="show-wrap"><i id="show"></i></a-->
+                                        <h5 class="media-heading">{{u.username}} {{u.lastname}}</h5>
+                                        <div>{{p.text}}</div>
+                                        <div class="icons-wrap">
+                                            <div class="icon-box">
+                                                <div *ngIf="objects[i]?.reactions[0]?.name === awesome">
+                                                    <a style="padding: 0px 2px 0px 2px;" class="AWESOME" (click)="deleteReaction('AWESOME', i)"><i class="bi bi-emoji-sunglasses red icon-active"></i></a>
+                                                </div>
+
+                                                <div *ngIf="objects[i]?.reactions[0]?.name !== awesome">
+                                                    <a style="padding: 0px 2px 0px 2px;" class="AWESOME" (click)="sendReaction('AWESOME', i)"><i class="bi bi-emoji-sunglasses black icon"></i></a>
+                                                </div>
+                                            </div>
+
+                                            <div class="icon-box">
+                                                <div *ngIf="objects[i]?.reactions[0]?.name === like">
+                                                    <a style="padding: 0px 2px 0px 2px;" class="LIKE" (click)="deleteReaction('LIKE', i)"><i class="bi bi-hand-thumbs-up red icon-active"></i></a>
+                                                </div>
+
+                                                <div *ngIf="objects[i]?.reactions[0]?.name !== like">
+                                                    <a style="padding: 0px 2px 0px 2px;" class="LIKE" (click)="sendReaction('LIKE', i)"><i class="bi bi-hand-thumbs-up black icon"></i></a>
+                                                </div>
+                                            </div>
+
+                                            <div class="icon-box">
+                                                <div *ngIf="objects[i]?.reactions[0]?.name === dislike">
+                                                    <a style="padding: 0px 2px 0px 2px;" class="DISLIKE" (click)="deleteReaction('DISLIKE', i)"><i class="bi bi-hand-thumbs-down red icon-active"></i></a>
+                                                </div>
+
+                                                <div *ngIf="objects[i]?.reactions[0]?.name !== dislike">
+                                                    <a style="padding: 0px 2px 0px 2px;" class="DISLIKE" (click)="sendReaction('DISLIKE', i)"><i class="bi bi-hand-thumbs-down black icon"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div hidden class="id">{{p.id}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <span class="text-info">{{users?.length}} users in our platform</span>
+            </div>
+        </div>
+    </div>
+</div>
