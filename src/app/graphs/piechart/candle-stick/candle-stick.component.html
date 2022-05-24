@@ -1,0 +1,10 @@
+<div id="chart">
+    <div class="chart">
+        <canvas baseChart [data]="financialChartData" [options]="financialChartOptions" [type]="financialChartType"
+            [plugins]="financialChartPlugins">
+        </canvas>
+    </div>
+    <div>
+        <button mat-button mat-raised-button color="primary" (click)="update()">Toggle Chart Type</button>
+    </div>
+</div>

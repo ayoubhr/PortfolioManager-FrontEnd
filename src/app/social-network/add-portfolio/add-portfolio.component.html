@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" id="add">
     <div id="head">
         <div id="box">
             <h3>
@@ -33,14 +33,12 @@
         <tbody>
             <tr *ngFor="let asset of portfolio!.composition; let i = index;">
                 {{launch(asset)}}
-                <td style="margin-right: 20px; width: 22.5%"><img src="{{asset.assetImage}}" alt=""></td>
+                <td ><img src="{{asset.assetImage}}" alt=""></td>
                 <td>{{ asset.assetSymbol }}</td>
                 <td>{{ asset.quantity }} ({{asset.assetPercentage}}%)</td>
                 <td>{{ asset.assetPrice | currency :'USD':'symbol':'1.0-2' }}</td>
-                <td>
-                    <button (click)="deleteAsset(asset)">Delete</button>
-                </td>
-                <td style="margin-right: 20px;">
+                <td style="padding: 5px;">
+                    <a [title]="delete" (click)="deleteAsset(asset)" style="color: red; cursor: pointer; margin-right: 10px;"><i class="bi bi-x-lg"></i></a>
                     <app-transaction [i]="i" [symbol]="asset.assetSymbol" [author]="portfolio.author"></app-transaction>
                 </td>
             </tr>

@@ -39,7 +39,7 @@ export class ModalComponent implements OnInit {
     let input = document.getElementById('input') as HTMLInputElement;
     input!.value = '';
 
-    let td = document.getElementsByTagName('td') as HTMLCollectionOf<HTMLTableDataCellElement>;
+    let td = document.getElementsByClassName('td') as HTMLCollectionOf<HTMLTableDataCellElement>;
     for (let i = 0; i < td.length; i++) {
       td[i].innerHTML = '';
     }
@@ -50,7 +50,7 @@ export class ModalComponent implements OnInit {
     this.modal.nativeElement.style.display = 'none';
     this.resetElements();
   }
-
+  
   closeModal() { 
     this.modal.nativeElement.style.display = 'none';
     this.resetElements();

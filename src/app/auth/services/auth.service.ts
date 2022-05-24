@@ -17,6 +17,7 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   login(user: UserLogin) {
+    localStorage.clear();
     this.http.post<any>(`${this.authLogin}`, { username: user.email, password: user.password }).subscribe({
       next: (resp) => {
         localStorage.setItem('token', resp['access_token'])

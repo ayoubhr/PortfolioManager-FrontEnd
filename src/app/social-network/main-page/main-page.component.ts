@@ -25,7 +25,7 @@ export class MainPageComponent implements OnInit {
 
   assets!: any;
 
-  constructor(private router: Router, private apiService: ApiService, private authService: AuthService, private stateService: StateService, private coingeckoService: CoingeckoService) { }
+  constructor(private router: Router, private apiService: ApiService, private stateService: StateService, private coingeckoService: CoingeckoService) { }
 
   ngOnInit(): void {
     this.stateService.portfolios$.subscribe({
@@ -46,14 +46,6 @@ export class MainPageComponent implements OnInit {
         this.assets = as
       },
       complete: () => console.log(this.assets)
-    })
-
-    this.authService.loginChange$.subscribe({
-      next: o => {
-        if (o === true) {
-          setInterval(() => this.authService.logout(), 600000);
-        }
-      }
     })
   }
 }

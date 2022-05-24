@@ -11,6 +11,7 @@ import { SocialNetworkModule } from './social-network/social-network.module';
 import { RouterModule } from '@angular/router';
 import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
 import { AuthInterceptorInterceptor } from './interceptors/auth.interceptor';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AuthInterceptorInterceptor } from './interceptors/auth.interceptor';
     RouterModule,
     MenuModule,
     FooterModule,
-    SocialNetworkModule
+    SocialNetworkModule,
+    NgChartsModule.forRoot()
   ],
   providers: [
     {

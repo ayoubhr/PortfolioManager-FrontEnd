@@ -1,4 +1,4 @@
-<div hidden   #myModal class="container">
+<div hidden #myModal class="container">
     <div class="content">
       <input class="form-control mb-2"
       id="input"
@@ -11,9 +11,9 @@
         <table *ngIf="a.id === asset || a.symbol === asset">
           <tbody>
             <tr (click)="close(a)">
-              <td><img src="{{a.image.thumb}}" alt=""></td>
-              <td>{{ a.symbol }}</td>
-              <td>{{ a.id }}</td>
+              <td class="td"><img src="{{a.image.thumb}}" alt=""></td>
+              <td class="td">{{ a.symbol }}</td>
+              <td class="td">{{ a.id }}</td>
             </tr>
           </tbody>
         </table>

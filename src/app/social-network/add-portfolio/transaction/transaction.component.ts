@@ -10,6 +10,8 @@ import { ApiService } from '../../services/api.service';
 })
 export class TransactionComponent implements OnInit {
 
+  transaction = 'Add Transaction';
+  
   portfolio!: Portfolio;
 
   quantity: number = 0;
@@ -60,6 +62,7 @@ export class TransactionComponent implements OnInit {
     this.portfolio.composition.forEach(a => {
       a.assetPercentage = (((a.quantity * a.assetPrice) * 100) / sumOfQuantity).toFixed(2);
     });
+
     this.stateService.setTotalBalance(sumOfQuantity);
 
     this.apiService.savePortfolio(this.portfolio).subscribe({

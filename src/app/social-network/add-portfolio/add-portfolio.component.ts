@@ -34,6 +34,10 @@ export class AddPortfolioComponent implements OnInit, AfterViewInit {
 
   totalBalance!: number;
 
+  delete = 'Delete Asset';
+
+  price!: number;
+
   constructor(private apiService: ApiService, private coingeckoService: CoingeckoService, private stateService: StateService) {}
 
   ngOnInit() {
@@ -129,6 +133,16 @@ export class AddPortfolioComponent implements OnInit, AfterViewInit {
     this.totalBalance = 0;
     this.portfolio.composition.forEach(a => {
       this.totalBalance += a.assetPrice * a.quantity;
+    });
+  }
+
+  keepAssetPricesUpdate() {
+    this.portfolio.composition.forEach(a => {
+      this.coingeckoService.getAsset(a.assetSymbol).subscribe({
+        next: a => {
+          a.assetPrice = a.market_data.current_price.usd;
+        }
+      })
     });
   }
 }
