@@ -5,6 +5,7 @@ import { BaseChartDirective } from 'ng2-charts';
 import { ApiService } from 'src/app/social-network/services/api.service';
 import { Portfolio } from 'src/app/social-network/interfaces/portfolio';
 import { StateService } from 'src/app/state-service/state.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-piechart',
@@ -23,29 +24,53 @@ export class PiechartComponent implements OnInit {
 
   assetName!: string;
 
-  constructor(private apiService: ApiService, private stateService: StateService) { }
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private stateService: StateService, private router: Router) { }
 
   ngOnInit(): void {
-    this.apiService.getPortfoliosByAuthor(this.user).subscribe({
-      next: p => {
-        this.portfolio = p[0];
-        console.log(this.portfolio)
-        this.portfolio.composition.forEach(asset => {
-          if (Number(asset.assetPercentage) > 0) { 
-            this.dataArray.push(Number(asset.assetPercentage));
-            this.labelsArray.push(asset.assetName);
-          }
-        });
-        this.assetName = this.portfolio.name;
-        console.log(this.dataArray);
-        console.log(this.labelsArray);
-        this.toggleLegend();
-      },
-      error: err => console.log(err),
-      complete: () => {
-        
-      }
-    });
+    if (+this.route.snapshot.params['id']) {
+      let id = +this.route.snapshot.params['id'];
+      this.apiService.getPortfolio(id).subscribe({
+        next: p => {
+          this.portfolio = p;
+          console.log(this.portfolio)
+          this.portfolio.composition.forEach(asset => {
+            if (Number(asset.assetPercentage) > 0) {
+              this.dataArray.push(Number(asset.assetPercentage));
+              this.labelsArray.push(asset.assetName);
+            }
+          });
+          this.assetName = this.portfolio.name;
+          console.log(this.dataArray);
+          console.log(this.labelsArray);
+          this.toggleLegend();
+        },
+        error: err => console.log(err),
+        complete: () => {
+
+        }
+      })
+    } else {
+      this.apiService.getPortfoliosByAuthor(this.user).subscribe({
+        next: p => {
+          this.portfolio = p[0];
+          console.log(this.portfolio)
+          this.portfolio.composition.forEach(asset => {
+            if (Number(asset.assetPercentage) > 0) {
+              this.dataArray.push(Number(asset.assetPercentage));
+              this.labelsArray.push(asset.assetName);
+            }
+          });
+          this.assetName = this.portfolio.name;
+          console.log(this.dataArray);
+          console.log(this.labelsArray);
+          this.toggleLegend();
+        },
+        error: err => console.log(err),
+        complete: () => {
+
+        }
+      });
+    }
   }
 
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
@@ -134,5 +159,11 @@ export class PiechartComponent implements OnInit {
     }
 
     this.chart?.render();
+  }
+
+  backToPortfolioManager() {
+    this.router.navigate(['']);
+
+    this.stateService.activateOption("", "main", "addPortfolio");
   }
 }

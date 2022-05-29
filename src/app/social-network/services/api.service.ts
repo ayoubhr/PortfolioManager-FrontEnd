@@ -13,9 +13,10 @@ import { Reaction, SaveReaction } from '../interfaces/reaction';
 export class ApiService {
 
   private apiFindPortfoliosByAuthor = "api/v1/portfolios/find-portfolio-author"
-  //private apiFindPublications = "api/v1/publications/find-publications";
+  private apiFindPortfolios = "api/v1/portfolios/find-all-portfolios";
+  private apiFindPortfolio = "api/v1/portfolios/find-portfolio";
   private apiSavePortfolio = "api/v1/portfolios/save-portfolio";
-  private apiFindPortfolioReactions = "api/v1/publications/find-portfolio-reactions";
+  private apiFindPortfolioReactions = "api/v1/portfolios/find-portfolio-reactions";
 
   private apiFindReactions = "api/v1/reactions/find-reactions";
   private apiSaveReaction = "api/v1/reactions/save-reaction";
@@ -34,13 +35,17 @@ export class ApiService {
     return this.http.get<Portfolio[]>(`${this.apiFindPortfoliosByAuthor}?author=${id}`);
   }
 
-  /*getPublications(): Observable<Publication[]> {
-    return this.http.get<Publication[]>(`${this.apiFindPublications}`);
-  }*/
+  getPortfolio(id: number): Observable<Portfolio> {
+    return this.http.get<Portfolio>(`${this.apiFindPortfolio}?id=${id}`);
+  }
+  
+  getPortfolios(): Observable<Portfolio[]> {
+    return this.http.get<Portfolio[]>(`${this.apiFindPortfolios}`);
+  }
 
-  /*getObjects(id: number): Observable<Object[]> {
+  getObjects(id: number): Observable<Object[]> {
     return this.http.get<Object[]>(`${this.apiFindPortfolioReactions}?id=${id}`);
-  }*/
+  }
 
   savePortfolio(portfolio: Portfolio): Observable<any> {
     return this.http.post<any>(`${this.apiSavePortfolio}`, portfolio);

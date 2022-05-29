@@ -46,7 +46,7 @@ export class CandleStickComponent implements OnInit {
         ticks: {
           source: 'auto'
         }
-      }
+      },
     }
   };
   public financialChartColors = [

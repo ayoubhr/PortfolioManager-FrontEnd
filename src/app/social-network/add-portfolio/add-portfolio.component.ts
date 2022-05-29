@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { StateService } from 'src/app/state-service/state.service';
 import { Asset, Portfolio } from '../interfaces/portfolio';
 import { ApiService } from '../services/api.service';
@@ -14,7 +15,7 @@ export class AddPortfolioComponent implements OnInit, AfterViewInit {
 
   user = Number(localStorage.getItem('user_id'));
 
-  @ViewChild('modal', {static: false}) modal!: ModalComponent
+  @ViewChild('modal', { static: false }) modal!: ModalComponent
 
   @Input() asset!: any;
 
@@ -38,12 +39,12 @@ export class AddPortfolioComponent implements OnInit, AfterViewInit {
 
   price!: number;
 
-  constructor(private apiService: ApiService, private coingeckoService: CoingeckoService, private stateService: StateService) {}
+  constructor(private apiService: ApiService, private coingeckoService: CoingeckoService, private stateService: StateService, private router: Router) { }
 
   ngOnInit() {
-    this.apiService.getPortfoliosByAuthor(this.user).subscribe({ 
+    this.apiService.getPortfoliosByAuthor(this.user).subscribe({
       next: p => {
-        if(p[0]){
+        if (p[0]) {
           this.portfolio = p[0];
           this.bool = true;
           this.stateService.setPortfolio(this.portfolio);
@@ -52,7 +53,7 @@ export class AddPortfolioComponent implements OnInit, AfterViewInit {
           this.bool = false
         }
       },
-      complete : () => {
+      complete: () => {
         console.log(this.portfolio)
       }
 
@@ -92,7 +93,7 @@ export class AddPortfolioComponent implements OnInit, AfterViewInit {
         this.portfolio.author = String(this.user);
         //if portfolio is unnamed use this name
         this.portfolio.name = "portfolio_test";
-        
+
         this.apiService.savePortfolio(this.portfolio).subscribe({
           next: p => {
             this.ngOnInit();
@@ -105,10 +106,10 @@ export class AddPortfolioComponent implements OnInit, AfterViewInit {
         console.log(this.portfolio)
       }
     })
-    
+
   }
 
-  deleteAsset(asset: any) { 
+  deleteAsset(asset: any) {
     // delete the asset from the assets table.
     let index = this.portfolio.composition.indexOf(asset);
     this.portfolio.composition.splice(index, 1);
@@ -129,7 +130,7 @@ export class AddPortfolioComponent implements OnInit, AfterViewInit {
     this.stateService.setAsset(asset.assetSymbol, asset);
   }
 
-  totalBalanceCalc() { 
+  totalBalanceCalc() {
     this.totalBalance = 0;
     this.portfolio.composition.forEach(a => {
       this.totalBalance += a.assetPrice * a.quantity;
@@ -144,5 +145,9 @@ export class AddPortfolioComponent implements OnInit, AfterViewInit {
         }
       })
     });
+  }
+
+  routeToPortfolioGraphs() {
+    this.router.navigate(['/graphs/portfolio']);
   }
 }

@@ -20,6 +20,8 @@ export class StateService {
 
   totalBalance = 0;
 
+  notAuthor$ = new ReplaySubject<boolean>(1);
+
   constructor(private router: Router, private apiService: ApiService) { }
 
   // method that emits a boolean variable true for the active option on the navigation bar.

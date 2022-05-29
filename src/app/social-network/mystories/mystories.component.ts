@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/auth/interfaces/user';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { StateService } from 'src/app/state-service/state.service';
+import { Portfolio } from '../interfaces/portfolio';
 import { Publication, SavePublication } from '../interfaces/publication';
 import { Reaction, SaveReaction } from '../interfaces/reaction';
 import { ApiService } from '../services/api.service';
@@ -26,16 +28,16 @@ export class MystoriesComponent implements OnInit {
 
   story!: string;
 
-  publications!: Publication[];
+  portfolios!: Portfolio[];
 
   users!: User[];
 
   reactions!: Reaction[];
 
-  publication: SavePublication = {
+  /*publication: SavePublication = {
     text: '',
     author: '',
-  }
+  }*/
 
   reaction: SaveReaction = {
     user: '',
@@ -47,11 +49,11 @@ export class MystoriesComponent implements OnInit {
 
   objects!: any[];
 
-  constructor(private router: Router, private apiService: ApiService, private authService: AuthService) { }
+  constructor(private router: Router, private apiService: ApiService, private authService: AuthService, private stateService: StateService) { }
 
   ngOnInit(): void {
-    /*this.apiService.getPublications().subscribe((ps) => {
-      this.publications = ps
+    this.apiService.getPortfolios().subscribe((ps) => {
+      this.portfolios = ps
       //console.log(this.publications)
       this.apiService.getUsers().subscribe({
         next: users => this.users = users,
@@ -65,9 +67,9 @@ export class MystoriesComponent implements OnInit {
           })
         }
       })
-    })*/
+    })
 
-    /*try {
+    try {
       this.apiService.getObjects(this.user).subscribe({
         next: o => this.objects = o,
         error: e => console.log(e),
@@ -78,18 +80,18 @@ export class MystoriesComponent implements OnInit {
       })
     } catch (error) {
       console.log(error)
-    }*/
+    }
   }
 
-  submitStory() {
-    if (typeof localStorage.getItem('user_id') != null) {
-      this.publication.author = localStorage.getItem('user_id');
-      this.publication.text = this.comment;
+  //submitStory() {
+  //  if (typeof localStorage.getItem('user_id') != null) {
+  //    this.publication.author = localStorage.getItem('user_id');
+  //    this.publication.text = this.comment;
       /*this.apiService.savePublication(this.publication).subscribe({
         next: () => location.reload()
       })*/
-    }
-  }
+  //  }
+  //}
 
   sendReaction(reaction: string, i: number) {
     let id_element = document.getElementsByClassName('id');
@@ -152,4 +154,8 @@ export class MystoriesComponent implements OnInit {
     })
   }
 
+  routeToPortfolioGraphs(id: any) {
+    console.log(id)
+    this.router.navigate([`/graphs/portfolio/${id}`]);
+  }
 }

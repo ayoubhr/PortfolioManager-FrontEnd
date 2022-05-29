@@ -2,7 +2,7 @@
     <div class="col-md-6 col-xs-12 col-md-offset-3">
         <div class="panel">
             <div class="panel-heading" style="margin-top: 50px;">
-                <h3 class="panel-title">Facegular Feed</h3>
+                <h3 class="panel-title">Portfolios Feed</h3>
             </div>
             <div class="panel-body">
                 <!--div class="form-group">
@@ -13,7 +13,7 @@
                 <hr class="margin-bottom-10"-->
                 <!-- DE AQUI A ABAJO ES LO QUE INTERESA -->
                 <ul class="list-group list-group-dividered list-group-full">
-                    <li class="list-group-item" *ngFor="let p of publications; let i = index">
+                    <li class="list-group-item" *ngFor="let p of portfolios; let i = index" (click)="routeToPortfolioGraphs(p.id)">
                         <div *ngFor="let u of users;let j = index">
                             <div *ngIf="p.author === u.id">
                                 <div class="media">
@@ -25,8 +25,7 @@
                                     </div>
                                     <div class="media-body">
                                         <div id="show">
-                                            <small class="text-muted pull-right">{{p.date | date}}</small>
-
+                                            <!--small class="text-muted pull-right">{{p.date | date}}</small-->
                                             <div *ngIf="objects[i]?.reactions[0]?.name === awesome">
                                                 <a><i class="bi bi-emoji-sunglasses red icon-active"></i></a>
                                             </div>
@@ -39,7 +38,8 @@
                                         </div>
                                         <!--a id="show-wrap"><i id="show"></i></a-->
                                         <h5 class="media-heading">{{u.username}} {{u.lastname}}</h5>
-                                        <div>{{p.text}}</div>
+                                        <small class="text-muted pull-right">{{u.date | date}}</small>
+                                        <!--div>{{p.text}}</div-->
                                         <div class="icons-wrap">
                                             <div class="icon-box">
                                                 <div *ngIf="objects[i]?.reactions[0]?.name === awesome">
