@@ -1,3 +1,7 @@
+#content {
+    cursor: pointer;
+}
+
 #feed {
     margin-top: -50px;
     margin-left: 15.2%;
@@ -41,9 +45,34 @@
     & .icons-wrap {
         display: flex;
         & .icon-box {
+            margin-top: 8px;
+            visibility: visible;
+        }
+        & #arrow {
             visibility: visible;
         }
     }
+}
+
+#assets {
+    margin-top: 2px;
+}
+
+#arrow {
+    margin-left: 85%;
+}
+
+#arrow span i {
+    transition: 0.6s;
+    font-size: 30px;
+}
+
+#arrow span i:hover {
+    transition: 0.6s;
+    font-size: 31px;
+    padding: 8px;
+    cursor: pointer;
+    color: seagreen;
 }
 
 .AWESOME,
@@ -55,6 +84,10 @@
 
 .icon-active {
     visibility: visible;
+}
+
+.icon-active, .icon {
+    font-size: 20px;
 }
 
 #emoji-box {

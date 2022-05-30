@@ -31,13 +31,13 @@ export class MenuTopComponent implements OnInit {
     const btnTitle = document.getElementById("title");
     const btnPortfolios = document.getElementById("portfolios");
     const btnAddPortfolio = document.getElementById("addPortfolio");
-    const btnBuddies = document.getElementById("mybuddies");
+    //const btnBuddies = document.getElementById("mybuddies");
     const btnMain = document.getElementById("main");
 
     btnTitle!.style.color = 'rgba(255, 255, 255, 0.624)';
     btnPortfolios!.style.color = 'rgba(255, 255, 255, 0.624)';
     btnAddPortfolio!.style.color = 'rgba(255, 255, 255, 0.624)';
-    btnBuddies!.style.color = 'rgba(255, 255, 255, 0.624)';
+    //btnBuddies!.style.color = 'rgba(255, 255, 255, 0.624)';
     btnMain!.style.color = 'rgba(255, 255, 255, 0.624)';
 
     // State service to show in white the active option on the navigation bar.

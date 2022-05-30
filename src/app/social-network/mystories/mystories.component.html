@@ -13,7 +13,7 @@
                 <hr class="margin-bottom-10"-->
                 <!-- DE AQUI A ABAJO ES LO QUE INTERESA -->
                 <ul class="list-group list-group-dividered list-group-full">
-                    <li class="list-group-item" *ngFor="let p of portfolios; let i = index" (click)="routeToPortfolioGraphs(p.id)">
+                    <li class="list-group-item" *ngFor="let p of portfolios; let i = index">
                         <div *ngFor="let u of users;let j = index">
                             <div *ngIf="p.author === u.id">
                                 <div class="media">
@@ -37,8 +37,15 @@
                                             </div>
                                         </div>
                                         <!--a id="show-wrap"><i id="show"></i></a-->
-                                        <h5 class="media-heading">{{u.username}} {{u.lastname}}</h5>
-                                        <small class="text-muted pull-right">{{u.date | date}}</small>
+                                        <div id="content">
+                                            <div>
+                                                <h5 class="media-heading">{{u.username}} {{u.lastname}}</h5>
+                                                <small class="text-muted pull-right">{{u.date | date}}</small>
+                                            </div>
+                                            <div id="assets" *ngFor="let a of p.composition">
+                                                <span>{{a.assetName}}</span>: <span>{{a.quantity}}</span> units (<span>{{a.assetPrice | currency :'USD':'symbol':'1.0-2'}}</span>)
+                                            </div>
+                                        </div>
                                         <!--div>{{p.text}}</div-->
                                         <div class="icons-wrap">
                                             <div class="icon-box">
@@ -69,6 +76,10 @@
                                                 <div *ngIf="objects[i]?.reactions[0]?.name !== dislike">
                                                     <a style="padding: 0px 2px 0px 2px;" class="DISLIKE" (click)="sendReaction('DISLIKE', i)"><i class="bi bi-hand-thumbs-down black icon"></i></a>
                                                 </div>
+                                            </div>
+
+                                            <div id="arrow">
+                                                <span (click)="routeToPortfolioGraphs(p.id)"><i class="bi bi-arrow-right-circle-fill"></i></span>
                                             </div>
                                         </div>
                                         <div hidden class="id">{{p.id}}</div>

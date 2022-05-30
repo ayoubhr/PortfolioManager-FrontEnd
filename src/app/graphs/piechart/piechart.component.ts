@@ -24,10 +24,13 @@ export class PiechartComponent implements OnInit {
 
   assetName!: string;
 
+  routeTo = false;
+
   constructor(private route: ActivatedRoute, private apiService: ApiService, private stateService: StateService, private router: Router) { }
 
   ngOnInit(): void {
     if (+this.route.snapshot.params['id']) {
+      this.routeTo = true;
       let id = +this.route.snapshot.params['id'];
       this.apiService.getPortfolio(id).subscribe({
         next: p => {
@@ -101,7 +104,6 @@ export class PiechartComponent implements OnInit {
   public pieChartType: ChartType = 'pie';
   public pieChartPlugins = [DatalabelsPlugin];
 
-  // events
   public chartClicked({ event, active }: { event: ChartEvent, active: {}[] }): void {
     console.log(event, active);
   }
@@ -110,49 +112,6 @@ export class PiechartComponent implements OnInit {
     console.log(event, active);
   }
 
-  // estos metodos sobran
-  /*changeLabels(): void {
-    const words = ['hen', 'variable', 'embryo', 'instal', 'pleasant', 'physical', 'bomber', 'army', 'add', 'film',
-      'conductor', 'comfortable', 'flourish', 'establish', 'circumstance', 'chimney', 'crack', 'hall', 'energy',
-      'treat', 'window', 'shareholder', 'division', 'disk', 'temptation', 'chord', 'left', 'hospital', 'beef',
-      'patrol', 'satisfied', 'academy', 'acceptance', 'ivory', 'aquarium', 'building', 'store', 'replace', 'language',
-      'redeem', 'honest', 'intention', 'silk', 'opera', 'sleep', 'innocent', 'ignore', 'suite', 'applaud', 'funny'];
-    const randomWord = () => words[Math.trunc(Math.random() * words.length)];
-    this.pieChartData.labels = new Array(3).map(_ => randomWord());
-
-    this.chart?.update();
-  }
-
-  addSlice(): void {
-    if (this.pieChartData.labels) {
-      this.pieChartData.labels.push(['Line 1', 'Line 2', 'Line 3']);
-    }
-
-    this.pieChartData.datasets[0].data.push(400);
-
-    this.chart?.update();
-  }
-
-  removeSlice(): void {
-    if (this.pieChartData.labels) {
-      this.pieChartData.labels.pop();
-    }
-
-    this.pieChartData.datasets[0].data.pop();
-
-    this.chart?.update();
-  }
-
-  // vale
-  changeLegendPosition(): void {
-    if (this.pieChartOptions?.plugins?.legend) {
-      this.pieChartOptions.plugins.legend.position = this.pieChartOptions.plugins.legend.position === 'left' ? 'top' : 'left';
-    }
-
-    this.chart?.render();
-  }*/
-
-  // vale
   toggleLegend(): void {
     if (this.pieChartOptions?.plugins?.legend) {
       this.pieChartOptions.plugins.legend.display = !this.pieChartOptions.plugins.legend.display;
@@ -162,8 +121,12 @@ export class PiechartComponent implements OnInit {
   }
 
   backToPortfolioManager() {
-    this.router.navigate(['']);
-
-    this.stateService.activateOption("", "main", "addPortfolio");
+    if(this.routeTo === false) {
+      this.stateService.activateOption("", "main", "addPortfolio");
+      this.router.navigate(['']);
+    } else if (this.routeTo === true) {
+      this.stateService.activateOption("", "main", "portfolios");
+      this.router.navigate(['']);
+    }
   }
 }
