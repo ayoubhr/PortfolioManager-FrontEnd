@@ -74,7 +74,7 @@ export class MystoriesComponent implements OnInit {
         next: o => this.objects = o,
         error: e => console.log(e),
         complete: () => {
-          console.log(this.objects)
+          //console.log(this.objects)
           this.loop = new Array(this.objects.length)
         }
       })
@@ -82,16 +82,6 @@ export class MystoriesComponent implements OnInit {
       console.log(error)
     }
   }
-
-  //submitStory() {
-  //  if (typeof localStorage.getItem('user_id') != null) {
-  //    this.publication.author = localStorage.getItem('user_id');
-  //    this.publication.text = this.comment;
-      /*this.apiService.savePublication(this.publication).subscribe({
-        next: () => location.reload()
-      })*/
-  //  }
-  //}
 
   sendReaction(reaction: string, i: number) {
     let id_element = document.getElementsByClassName('id');
@@ -106,38 +96,19 @@ export class MystoriesComponent implements OnInit {
       let emojis = document.getElementsByClassName(reaction);
       this.apiService.saveReaction(this.reaction).subscribe({
         next: () => {
-          console.log(emojis)
+          //console.log(emojis)
           if (emojis[i]) {
             emojis[i].setAttribute('class', 'red');
             this.ngOnInit();
           }
         },
         error: e => console.log(e),
-        complete: () => console.log('reaction saved')       
+        complete: () => {
+          //console.log('reaction saved')
+        }       
       })
     }
   }
-
-  /*showReaction(reaction: string){
-    let show = document.getElementById('show');
-    let wrap = document.getElementById('show-wrap');
-
-    wrap?.setAttribute('style', 'color: red; cursor: pointer; width: 21px;');
-
-    if(reaction === 'AWESOME') {
-      show?.setAttribute('class', 'red');
-      show?.setAttribute('class', 'icon-active');
-      show?.setAttribute('class', 'bi bi-emoji-sunglasses');
-    } else if(reaction === 'LIKE') {
-      show?.setAttribute('class', 'red');
-      show?.setAttribute('class', 'icon-active');
-      show?.setAttribute('class', 'bi bi-hand-thumbs-up');
-    } else if(reaction === 'DISLIKE'){
-      show?.setAttribute('class', 'red');
-      show?.setAttribute('class', 'icon-active');
-      show?.setAttribute('class', 'bi bi-hand-thumbs-down');
-    }
-  }*/
 
   deleteReaction(reaction: string, i: number) {
     let elements = document.getElementsByClassName(reaction);
@@ -145,17 +116,19 @@ export class MystoriesComponent implements OnInit {
     let id = this.objects[i].reactions[0].id;
     this.apiService.deleteReaction(id).subscribe({
       next: () => {
-        console.log("deleting...")
+        //console.log("deleting...")
         elements[i].setAttribute('class', 'black');
         this.ngOnInit();
       },
       error: e => console.log(e),
-      complete: () => console.log("complete")
+      complete: () => {
+        //console.log("complete")
+      }
     })
   }
 
   routeToPortfolioGraphs(id: any) {
-    console.log(id)
+    //console.log(id)
     this.router.navigate([`/graphs/portfolio/${id}`]);
   }
 }

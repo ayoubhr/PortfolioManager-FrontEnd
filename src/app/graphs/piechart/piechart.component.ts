@@ -35,7 +35,7 @@ export class PiechartComponent implements OnInit {
       this.apiService.getPortfolio(id).subscribe({
         next: p => {
           this.portfolio = p;
-          console.log(this.portfolio)
+          //console.log(this.portfolio)
           this.portfolio.composition.forEach(asset => {
             if (Number(asset.assetPercentage) > 0) {
               this.dataArray.push(Number(asset.assetPercentage));
@@ -43,8 +43,8 @@ export class PiechartComponent implements OnInit {
             }
           });
           this.assetName = this.portfolio.name;
-          console.log(this.dataArray);
-          console.log(this.labelsArray);
+          //console.log(this.dataArray);
+          //console.log(this.labelsArray);
           this.toggleLegend();
         },
         error: err => console.log(err),
@@ -56,7 +56,7 @@ export class PiechartComponent implements OnInit {
       this.apiService.getPortfoliosByAuthor(this.user).subscribe({
         next: p => {
           this.portfolio = p[0];
-          console.log(this.portfolio)
+          //console.log(this.portfolio)
           this.portfolio.composition.forEach(asset => {
             if (Number(asset.assetPercentage) > 0) {
               this.dataArray.push(Number(asset.assetPercentage));
@@ -64,8 +64,8 @@ export class PiechartComponent implements OnInit {
             }
           });
           this.assetName = this.portfolio.name;
-          console.log(this.dataArray);
-          console.log(this.labelsArray);
+          //console.log(this.dataArray);
+          //console.log(this.labelsArray);
           this.toggleLegend();
         },
         error: err => console.log(err),
@@ -121,7 +121,7 @@ export class PiechartComponent implements OnInit {
   }
 
   backToPortfolioManager() {
-    if(this.routeTo === false) {
+    if (this.routeTo === false) {
       this.stateService.activateOption("", "main", "addPortfolio");
       this.router.navigate(['']);
     } else if (this.routeTo === true) {

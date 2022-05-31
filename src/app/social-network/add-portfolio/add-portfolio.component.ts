@@ -54,7 +54,7 @@ export class AddPortfolioComponent implements OnInit, AfterViewInit {
         }
       },
       complete: () => {
-        console.log(this.portfolio)
+        //console.log(this.portfolio)
       }
 
     })
@@ -103,7 +103,7 @@ export class AddPortfolioComponent implements OnInit, AfterViewInit {
       complete: () => {
         this.bool = true;
         this.modal.closeModal();
-        console.log(this.portfolio)
+        //console.log(this.portfolio)
       }
     })
 

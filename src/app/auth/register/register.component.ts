@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
       user.avatar = "abcdef.jpg";
       this.apiService.saveUser(user).subscribe({
         next: (e) => {
-          console.log(e)
+          //console.log(e)
           this.router.navigate(['']);
         },
         error: (error) => {

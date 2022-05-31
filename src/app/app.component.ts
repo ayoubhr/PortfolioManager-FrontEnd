@@ -1,11 +1,13 @@
+import { style, transition, trigger, query, group, animate } from '@angular/animations';
 import { Component, OnInit, Output } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { AuthService } from './auth/services/auth.service';
 import { Portfolio } from './social-network/interfaces/portfolio';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   @Output() title = 'Portgular';
@@ -19,8 +21,6 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService) { }
     
   ngOnInit(): void {
-    
-
     this.authService.loginChange$.subscribe({
       next: o => {
         if (o === true) {

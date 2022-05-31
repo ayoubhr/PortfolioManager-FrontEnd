@@ -7,12 +7,12 @@ const routes: Routes = [
   {
     path: 'portfolio',
     component: PiechartComponent,
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard],
   },
   {
     path: 'portfolio/:id',
     component: PiechartComponent,
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard],
   }
 ];
 

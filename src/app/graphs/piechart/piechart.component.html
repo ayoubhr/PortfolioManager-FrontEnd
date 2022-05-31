@@ -1,5 +1,5 @@
 <div class="container-fluid" id="parent">
-    <button (click)="backToPortfolioManager()">Go back</button>
+    <button id="back" (click)="backToPortfolioManager()">Go back</button>
     <div id="pie">
         <div>
           <div>
@@ -15,10 +15,6 @@
         </div>
         <div class="button-row">
           <button mat-button mat-raised-button color="primary" (click)="toggleLegend()">Toggle Legend</button>
-          <!--button mat-button mat-raised-button color="primary" (click)="changeLabels()">Change Labels</button>
-          <button mat-button mat-raised-button color="primary" (click)="addSlice()">Add Slice</button>
-          <button mat-button mat-raised-button color="primary" (click)="removeSlice()">Remove Slice</button>
-          <button mat-button mat-raised-button color="primary" (click)="changeLegendPosition()">Change Legend Position</button-->
         </div>
     </div>
     <div id="candle">

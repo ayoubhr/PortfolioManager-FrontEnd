@@ -45,7 +45,9 @@ export class MainPageComponent implements OnInit {
       next: as => {
         this.assets = as
       },
-      complete: () => console.log(this.assets)
+      complete: () => {
+        //console.log(this.assets)
+      }
     })
   }
 }
