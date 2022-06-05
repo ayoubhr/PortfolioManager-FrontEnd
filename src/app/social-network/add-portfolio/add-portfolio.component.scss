@@ -62,4 +62,24 @@ td {
 
 #box h3 a {
     text-decoration: none;
+    color: rgb(3, 3, 238);
+}
+
+#box h3 a:after {
+    display: block;
+    left: 0;
+    bottom: -10px;
+    width: 0;
+    height: 2px;
+    background-color: rgb(3, 3, 238);;
+    content: "";
+    transition: width 0.4s;
+}
+
+#box h3 a:hover {
+    color: #0d0d0d;
+}
+
+#box h3 a:hover:after {
+    width: 100%;
 }

@@ -1,8 +1,8 @@
-import { style, transition, trigger, query, group, animate } from '@angular/animations';
 import { Component, OnInit, Output } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { AuthService } from './auth/services/auth.service';
 import { Portfolio } from './social-network/interfaces/portfolio';
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService) { }
     
   ngOnInit(): void {
+    const app = initializeApp(firebaseConfig);
     this.authService.loginChange$.subscribe({
       next: o => {
         if (o === true) {

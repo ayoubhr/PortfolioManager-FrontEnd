@@ -49,9 +49,12 @@ export class MystoriesComponent implements OnInit {
 
   objects!: any[];
 
+  react = false;
+
   constructor(private router: Router, private apiService: ApiService, private authService: AuthService, private stateService: StateService) { }
 
   ngOnInit(): void {
+    console.log(this.user)
     this.apiService.getPortfolios().subscribe((ps) => {
       this.portfolios = ps
       //console.log(this.publications)
@@ -71,7 +74,12 @@ export class MystoriesComponent implements OnInit {
 
     try {
       this.apiService.getObjects(this.user).subscribe({
-        next: o => this.objects = o,
+        next: o => {
+          if(o.length > 0) {
+            this.objects = o;
+            //console.log(this.objects)
+          }
+        },
         error: e => console.log(e),
         complete: () => {
           //console.log(this.objects)

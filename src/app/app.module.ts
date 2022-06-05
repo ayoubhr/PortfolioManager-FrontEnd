@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
 import { AuthInterceptorInterceptor } from './interceptors/auth.interceptor';
 import { NgChartsModule } from 'ng2-charts';
+import { initializeApp } from "firebase/app";
 
 @NgModule({
   declarations: [
