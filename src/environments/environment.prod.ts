@@ -1,7 +1,7 @@
-//'http://localhost:8080'
+//'http://146.190.19.66:8080'
 export const environment = {
   production: true,
-  baseUrl: 'http://146.190.19.66:8080',
+  baseUrl: 'https://class.portmanager.xyz',
 };
 
 export const firebaseConfig = {
